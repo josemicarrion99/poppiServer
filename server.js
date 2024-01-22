@@ -10,12 +10,11 @@ app.use(express.json());
 // Altas cluster specifics. Be sure it includes
 // a valid username and password! Note that in a production environment,
 // you do not want to store your password in plain-text here.
-const uri =   "mongodb+srv://poppi:Poppi2023_@poppi.uamdlls.mongodb.net/";
 const dbName = "poppi";
 const collectionName = "surveyResults";
 
 // MongoDB connection string
-// const uri = process.env.MONGODB_CONNECTION_STRING || 'fallback_connection_string';
+const uri = process.env.MONGODB_CONNECTION_STRING || 'fallback_connection_string';
 
 
 const client = new MongoClient(uri);
