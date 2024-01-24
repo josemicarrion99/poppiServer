@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-
+const port = process.env.PORT || 3000;
 
 const app = express();
 app.use(cors());
@@ -49,8 +49,7 @@ app.post('/saveSurvey', (req,res) => res.json({message: 'postSave'}))
 
 // });
 
-const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
-    console.log('Server is running on port ' + port);
-});
+    console.log(`Server is running on port ${port}`);
+  });
