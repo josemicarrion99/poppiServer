@@ -16,7 +16,7 @@ const collectionName = "surveyResults";
 
 
 // MongoDB connection string
-const uri = process.env.DATABASE_URL || 'fallback_connection_string';
+const uri = process.env.AZURE_COSMOS_CONNECTIONSTRING || 'fallback_connection_string';
 console.log(dbName)
 console.log(uri)
 
