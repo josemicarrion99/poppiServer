@@ -10,8 +10,9 @@ app.use(express.json());
 // const dbName = process.env.DATABASE_NAME;
 // const collectionName = "surveyResults";
 
-app.get('/', (req,res) => res.json({message: 'Josee'}))
-
+app.get('/', (req, res) => {
+    res.send('Hello, World!');
+  });
 // const uri = process.env.AZURE_COSMOS_CONNECTIONSTRING || 'fallback_connection_string';
 // console.log(dbName)
 // console.log(uri)
