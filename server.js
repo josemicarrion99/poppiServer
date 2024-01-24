@@ -1,6 +1,7 @@
 const { MongoClient } = require("mongodb");
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 
 
 const app = express();
@@ -10,12 +11,14 @@ app.use(express.json());
 // Altas cluster specifics. Be sure it includes
 // a valid username and password! Note that in a production environment,
 // you do not want to store your password in plain-text here.
-const dbName = "poppi";
+const dbName = process.env.DATABASE_NAME;
 const collectionName = "surveyResults";
 
-// MongoDB connection string
-const uri = process.env.MONGODB_CONNECTION_STRING || 'fallback_connection_string';
 
+// MongoDB connection string
+const uri = process.env.DATABASE_URL || 'fallback_connection_string';
+console.log(dbName)
+console.log(uri)
 
 const client = new MongoClient(uri);
 
@@ -31,8 +34,9 @@ const database = client.db(dbName);
 const collection = database.collection(collectionName);
 
 app.post('/saveSurvey', async (req, res) => {
+    console.log(req.body);
+
     const surveyData = JSON.parse(req.body.surveyData);
-    console.log(surveyData);
 
     try {
         const insertResult = await collection.insertOne(surveyData);
@@ -51,5 +55,5 @@ app.post('/saveSurvey', async (req, res) => {
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
-    console.log('Server is running on port 8000');
+    console.log('Server is running on port ' + port);
 });
